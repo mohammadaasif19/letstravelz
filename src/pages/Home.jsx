@@ -63,15 +63,31 @@ const TourSection = () => {
     const interval = setInterval(() => {
       if (scrollRef.current) {
         const { current } = scrollRef;
-        if (current.scrollLeft + current.clientWidth >= current.scrollWidth - 10) {
-          current.scrollTo({ left: 0, behavior: 'smooth' });
+        // Direction reversed to move "forward"
+        if (current.scrollLeft <= 0) {
+          current.scrollTo({ left: current.scrollWidth, behavior: 'smooth' });
         } else {
-          current.scrollBy({ left: 432, behavior: 'smooth' });
+          current.scrollBy({ left: -432, behavior: 'smooth' });
         }
       }
     }, 4000);
     return () => clearInterval(interval);
   }, [isPaused]);
+
+  useEffect(() => {
+    if (!scrollRef.current) return;
+    
+    // Modern smooth scroll-linked movement
+    gsap.to(scrollRef.current, {
+      scrollLeft: scrollRef.current.scrollWidth / 4,
+      scrollTrigger: {
+        trigger: scrollRef.current,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 2
+      }
+    });
+  }, []);
 
   return (
     <section className="py-32 bg-white overflow-hidden">
@@ -174,7 +190,7 @@ const Home = () => {
         </div>
         <div className="gsap-card-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
           <DestinationCard image={BALI_IMAGE} title="Bali" price="$899" tag="Tropical" />
-          <DestinationCard image="https://images.unsplash.com/photo-1528181304800-2f140819898f?auto=format&fit=crop&q=80&w=800" title="Thailand" price="$749" tag="Exotic" />
+          <DestinationCard image="/thailand_hero.png" title="Thailand" price="$749" tag="Exotic" />
           <DestinationCard image="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=800" title="Dubai" price="$999" tag="Modern" />
           <DestinationCard image="/kerala_backwaters_1773395005447.png" title="Kerala" price="$499" tag="Serene" />
           <DestinationCard image="/rajasthan_fort_1773395021365.png" title="Rajasthan" price="$549" tag="Heritage" />
@@ -238,8 +254,8 @@ const Home = () => {
             <div className="absolute bottom-10 left-10 text-white"><h4 className="text-4xl font-black">Dubai</h4><p className="text-brand-gold font-bold">From $999</p></div>
           </div>
           <div className="md:col-span-1 md:row-span-1 relative group overflow-hidden rounded-[2.5rem] shadow-lg">
-            <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&q=80&w=800" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform" />
-            <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white font-black text-xl">Thailand</div>
+            <img src="/thailand_about.png" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform" />
+            <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white font-black text-xl text-center px-4">Thailand</div>
           </div>
           <div className="md:col-span-1 md:row-span-1 relative group overflow-hidden rounded-[2.5rem] shadow-lg">
             <img src="/goa_beach_sunset.png" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform" />

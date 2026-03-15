@@ -10,7 +10,7 @@ const Footer = () => {
           {/* Brand column */}
           <div className="space-y-8">
             <div className="flex items-center">
-              <img src="/logo_footer.png" alt="Let's Travelz" className="h-24 w-auto object-contain" />
+              <img src="/logo-main.png" alt="Let's Travelz" className="h-24 w-auto object-contain" />
             </div>
             <p className="text-neutral-500 font-medium leading-relaxed">
               At Let’s Travelz, we believe travel is more than just reaching a destination—it’s about the journey.

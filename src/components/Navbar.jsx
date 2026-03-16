@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
+import HeartbeatButton from './ui/heartbeat-effect-button';
 
 const getPath = (item, base) => {
   const mapping = {
@@ -194,15 +195,18 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-4">
-          <a href="mailto:info@letstravelz.com" className={`group relative flex items-center justify-center overflow-hidden rounded-full font-black text-[9px] lg:text-[10px] uppercase tracking-widest transition-all duration-500 shadow-xl
-            ${isScrolled || !isHome 
-              ? 'bg-brand-dark text-white px-5 lg:px-8 py-2.5 lg:py-3' 
-              : 'bg-brand-gold text-white px-5 lg:px-8 py-2.5 lg:py-3 ring-4 ring-white/10'
-            }`}
+          <HeartbeatButton 
+            asChild
+            className={`font-black text-[9px] lg:text-[10px] uppercase tracking-widest transition-all duration-500 shadow-xl border-none
+              ${isScrolled || !isHome 
+                ? 'bg-brand-dark hover:bg-brand-gold' 
+                : 'bg-brand-gold ring-4 ring-white/10 hover:bg-brand-dark'
+              }`}
           >
-            <span className="relative z-10">Get In Touch</span>
-            <div className="absolute inset-0 bg-brand-gold transition-transform duration-500 translate-y-full group-hover:translate-y-0" />
-          </a>
+            <a href="mailto:info@letstravelz.com" className="px-5 lg:px-8 py-2.5 lg:py-4 rounded-full">
+              Get In Touch
+            </a>
+          </HeartbeatButton>
         </div>
 
         {/* Mobile Menu Overlay */}

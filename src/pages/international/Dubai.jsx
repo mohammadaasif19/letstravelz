@@ -72,9 +72,9 @@ const Dubai = () => {
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-              <div className="absolute bottom-10 left-10 text-white">
-                <p className="font-black text-xs uppercase tracking-widest mb-2 text-brand-gold">Innovation Heaven</p>
-                <h4 className="text-3xl font-black tracking-tighter">Modern Oasis</h4>
+              <div className="absolute bottom-10 left-10">
+                <p className="font-black text-xs uppercase tracking-widest mb-2 text-white/90">Innovation Heaven</p>
+                <h4 className="text-3xl font-black tracking-tighter text-white">Modern Oasis</h4>
               </div>
             </div>
           </div>

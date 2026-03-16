@@ -35,9 +35,9 @@ const Singapore = () => {
             <div className="relative rounded-[3rem] overflow-hidden shadow-[0_50px_100px_rgba(0,0,0,0.1)] h-[600px] border-[12px] border-white group">
               <img src="https://www.journee-mondiale.com/en/wp-content/uploads/2025/04/2025-04-23-03-06-25_.webp" alt="Singapore" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-              <div className="absolute bottom-10 left-10 text-white">
-                <p className="font-black text-xs uppercase tracking-widest mb-2 text-brand-gold">Futuristic Gardens</p>
-                <h4 className="text-3xl font-black tracking-tighter">Island Harmony</h4>
+              <div className="absolute bottom-10 left-10">
+                <p className="font-black text-xs uppercase tracking-widest mb-2 text-white/90">Futuristic Gardens</p>
+                <h4 className="text-3xl font-black tracking-tighter text-white">Island Harmony</h4>
               </div>
             </div>
           </div>

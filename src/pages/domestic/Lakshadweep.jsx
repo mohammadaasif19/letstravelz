@@ -35,9 +35,9 @@ const Lakshadweep = () => {
             <div className="relative rounded-[3rem] overflow-hidden shadow-[0_50px_100px_rgba(0,0,0,0.1)] h-[600px] border-[12px] border-white group">
               <img src="https://www.setmytrip.in/wp-content/uploads/2024/12/PSX_20241206_233414-scaled.jpg" alt="Lakshadweep" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-              <div className="absolute bottom-10 left-10 text-white">
-                <p className="font-black text-xs uppercase tracking-widest mb-2 text-brand-gold">Lagoon Life</p>
-                <h4 className="text-3xl font-black tracking-tighter">Azure Depths</h4>
+              <div className="absolute bottom-10 left-10">
+                <p className="font-black text-xs uppercase tracking-widest mb-2 text-white/90">Lagoon Life</p>
+                <h4 className="text-3xl font-black tracking-tighter text-white">Azure Depths</h4>
               </div>
             </div>
           </div>

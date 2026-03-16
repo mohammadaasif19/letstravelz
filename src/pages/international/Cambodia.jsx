@@ -35,9 +35,9 @@ const Cambodia = () => {
             <div className="relative rounded-[3rem] overflow-hidden shadow-[0_50px_100px_rgba(0,0,0,0.1)] h-[600px] border-[12px] border-white group">
               <img src="https://media.licdn.com/dms/image/v2/D5612AQF9RxJamJ6nFQ/article-cover_image-shrink_600_2000/B56ZqbkjOsH8AQ-/0/1763546642192?e=2147483647&v=beta&t=KJg-1uAmAV3oXqy-xvN69Z2ejFRf-r2trpdTsTkSDVc" alt="Cambodia" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-              <div className="absolute bottom-10 left-10 text-white">
-                <p className="font-black text-xs uppercase tracking-widest mb-2 text-brand-gold">Ancient Heritage</p>
-                <h4 className="text-3xl font-black tracking-tighter">Stone & Soul</h4>
+              <div className="absolute bottom-10 left-10">
+                <p className="font-black text-xs uppercase tracking-widest mb-2 text-white/90">Ancient Heritage</p>
+                <h4 className="text-3xl font-black tracking-tighter text-white">Stone & Soul</h4>
               </div>
             </div>
           </div>

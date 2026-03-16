@@ -23,8 +23,8 @@ const FeatureCard = ({ icon, title, description, index }) => (
       <h3 className="text-2xl font-black mb-4 text-brand-dark tracking-tight">{title}</h3>
       <p className="text-neutral-500 text-sm leading-relaxed font-medium mb-6">{description}</p>
       <div className="flex items-center gap-2 text-brand-gold text-[10px] font-black uppercase tracking-widest opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">
-        Learn More 
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        Learn More
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
       </div>
     </div>
   </div>
@@ -76,7 +76,7 @@ const TourSection = () => {
 
   useEffect(() => {
     if (!scrollRef.current) return;
-    
+
     // Modern smooth scroll-linked movement
     gsap.to(scrollRef.current, {
       scrollLeft: scrollRef.current.scrollWidth / 4,
@@ -108,13 +108,22 @@ const TourSection = () => {
           {[1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6].map((num, i) => (
             <div key={i} className="flex-shrink-0 w-[400px] h-[550px] relative group overflow-hidden rounded-[3rem] shadow-2xl">
               <img
-                src={num === 6 ? "https://images.unsplash.com/photo-1483347756197-71ef80e95f73?auto=format&fit=crop&q=80&w=1200" : `/tour_project_${num}.png`}
-                alt={`Project tour ${num}`}
+                src={[
+                  "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=800",
+                  "/thailand_about.png",
+                  "/bali_hero.png",
+                  "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&q=80&w=800",
+                  "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&q=80&w=800",
+                  "/luxury_travel_hero_1773394416882.png"
+                ][i % 6]}
+                alt="Destination"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-100 transition-opacity" />
               <div className="absolute bottom-10 left-10 right-10">
-                <h4 className="text-2xl font-black text-white mb-2 tracking-tight">Project-tour-{num}</h4>
+                <h4 className="text-2xl font-black text-white mb-2 tracking-tight">
+                  {["Dubai Luxury", "Exotic Thailand", "Bali Dreams", "Swiss Alps", "Vietnam Wonders", "Global Getaways"][i % 6]}
+                </h4>
                 <div className="w-10 h-1 bg-brand-gold rounded-full transform origin-left transition-transform duration-500 scale-x-50 group-hover:scale-x-100" />
                 <p className="text-neutral-300 text-xs mt-4 uppercase tracking-[0.2em] font-bold">Curated Experience</p>
               </div>
@@ -145,7 +154,7 @@ const Home = () => {
           }
         });
       });
-      [".gsap-card-stagger", ".gsap-feature-stagger", ".gsap-stat-card", ".gsap-bento-stagger", ".gsap-reviews-stagger", ".gsap-india-stagger"].forEach(selector => {
+      [".gsap-card-stagger", ".gsap-feature-stagger", ".gsap-stat-card", ".gsap-bento-stagger"].forEach(selector => {
         gsap.from(`${selector} > *`, { scrollTrigger: { trigger: selector, start: "top 85%" }, y: 50, opacity: 0, duration: 1, stagger: 0.15, ease: "power2.out", clearProps: "all" });
       });
     }, mainRef);
@@ -230,15 +239,15 @@ const Home = () => {
             <h3 className="text-5xl md:text-7xl font-black tracking-tighter leading-[0.9] text-brand-dark">Deals in Travel and <br />Visa Services</h3>
           </div>
           <div className="bg-brand-surface p-6 rounded-2xl border-l-4 border-brand-gold max-w-sm">
-             <p className="text-neutral-600 text-sm font-bold leading-relaxed italic">"We redefine global travel by blending professional expertise with personalized care."</p>
+            <p className="text-neutral-600 text-sm font-bold leading-relaxed italic">"We redefine global travel by blending professional expertise with personalized care."</p>
           </div>
         </div>
         <div className="gsap-feature-stagger grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
           {[
-            { title: "Air Tickets", desc: "Quick flight bookings worldwide.", icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg> },
-            { title: "Land Transport", desc: "Luxury chauffeur-driven fleet.", icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1m1-4h1"/></svg> },
-            { title: "Hotels", desc: "5-star stays at exclusive rates.", icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg> },
-            { title: "Visa Expert", desc: "Precision-led documentation.", icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg> }
+            { title: "Air Tickets", desc: "Quick flight bookings worldwide.", icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg> },
+            { title: "Land Transport", desc: "Luxury chauffeur-driven fleet.", icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1m1-4h1" /></svg> },
+            { title: "Hotels", desc: "5-star stays at exclusive rates.", icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg> },
+            { title: "Visa Expert", desc: "Precision-led documentation.", icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg> }
           ].map((item, idx) => (
             <FeatureCard key={idx} icon={item.icon} title={item.title} description={item.desc} index={idx} />
           ))}
@@ -247,19 +256,60 @@ const Home = () => {
 
       <section id="international" className="py-32 container mx-auto px-6">
         <div className="gsap-reveal mb-20 text-center"><h3 className="text-4xl md:text-5xl font-black tracking-tight text-brand-dark">Top Tourist Destinations</h3></div>
-        <div className="gsap-bento-stagger grid grid-cols-1 md:grid-cols-4 md:grid-rows-3 gap-6 h-auto md:h-[900px]">
+        <div className="gsap-bento-stagger grid grid-cols-1 md:grid-cols-4 md:grid-rows-3 gap-6 h-auto md:h-[1000px]">
+          {/* Main Featured: Dubai */}
           <div className="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-[2.5rem] shadow-lg">
             <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=1200" className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-            <div className="absolute bottom-10 left-10 text-white"><h4 className="text-4xl font-black">Dubai</h4><p className="text-brand-gold font-bold">From $999</p></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80" />
+            <div className="absolute bottom-10 left-10 z-10">
+              <h4 className="text-4xl font-black mb-2 text-white">Dubai</h4>
+              <p className="text-brand-gold font-bold uppercase tracking-widest text-xs">From $999</p>
+            </div>
           </div>
+
+          {/* Thailand */}
           <div className="md:col-span-1 md:row-span-1 relative group overflow-hidden rounded-[2.5rem] shadow-lg">
-            <img src="/thailand_about.png" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform" />
+            <img src="/thailand_about.png" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s]" />
             <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white font-black text-xl text-center px-4">Thailand</div>
           </div>
+
+          {/* Bali */}
           <div className="md:col-span-1 md:row-span-1 relative group overflow-hidden rounded-[2.5rem] shadow-lg">
-            <img src="/goa_beach_sunset.png" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform" />
-            <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white font-black text-xl">Goa</div>
+            <img src="/bali_hero.png" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s]" />
+            <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white font-black text-xl">Bali</div>
+          </div>
+
+          {/* Switzerland */}
+          <div className="md:col-span-1 md:row-span-1 relative group overflow-hidden rounded-[2.5rem] shadow-lg">
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&q=80&w=800" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s]" />
+            <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white font-black text-xl">Switzerland</div>
+          </div>
+
+          {/* Singapore */}
+          <div className="md:col-span-1 md:row-span-1 relative group overflow-hidden rounded-[2.5rem] shadow-lg">
+            <img src="/singapore_skyline.png" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s]" />
+            <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white font-black text-xl">Singapore</div>
+          </div>
+
+          {/* Vietnam - Wide Card */}
+          <div className="md:col-span-2 md:row-span-1 relative group overflow-hidden rounded-[2.5rem] shadow-lg">
+            <img src="https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&q=80&w=1200" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s]" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent p-10 flex flex-col justify-end">
+              <h4 className="text-3xl font-black text-white">Vietnam</h4>
+              <p className="text-brand-gold font-bold">Nature's Wonder</p>
+            </div>
+          </div>
+
+          {/* Maldives */}
+          <div className="md:col-span-1 md:row-span-1 relative group overflow-hidden rounded-[2.5rem] shadow-lg">
+            <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&q=80&w=800" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s]" />
+            <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white font-black text-xl text-center px-4">Maldives</div>
+          </div>
+
+          {/* Malaysia */}
+          <div className="md:col-span-1 md:row-span-1 relative group overflow-hidden rounded-[2.5rem] shadow-lg">
+            <img src="https://www.eyeonasia.gov.sg/images/asean-countries/Malaysia%20snapshot%20cover%20iso.jpg" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s]" />
+            <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white font-black text-xl text-center px-4">Malaysia</div>
           </div>
         </div>
       </section>
@@ -269,11 +319,11 @@ const Home = () => {
       <section id="contact" className="py-32 bg-brand-dark relative overflow-hidden">
         <div className="absolute -top-24 -right-24 w-96 h-96 bg-brand-gold/10 blur-[120px] rounded-full" />
         <div className="container mx-auto px-6 relative z-10 text-center">
-           <h2 className="text-5xl md:text-7xl font-black text-white mb-8">Why Travelers <span className="text-brand-gold">Choose Us</span></h2>
-           <div className="gsap-stat-card bg-neutral-900/50 backdrop-blur-2xl p-16 rounded-[4rem] border border-white/5 inline-block">
-              <h3 className="text-9xl font-black text-brand-gold tracking-tighter leading-none">500+</h3>
-              <p className="text-2xl font-bold text-white mt-4 uppercase tracking-widest">Active Clients Trust Us</p>
-           </div>
+          <h2 className="text-5xl md:text-7xl font-black text-white mb-8">Why Travelers <span className="text-brand-gold">Choose Us</span></h2>
+          <div className="gsap-stat-card bg-neutral-900/50 backdrop-blur-2xl p-16 rounded-[4rem] border border-white/5 inline-block">
+            <h3 className="text-9xl font-black text-brand-gold tracking-tighter leading-none">500+</h3>
+            <p className="text-2xl font-bold text-white mt-4 uppercase tracking-widest">Active Clients Trust Us</p>
+          </div>
         </div>
       </section>
     </div>

@@ -152,7 +152,7 @@ const Contact = () => {
       </section>
 
       {/* Map Section */}
-      <section className="h-[600px] w-full bg-neutral-100 relative grayscale hover:grayscale-0 transition-all duration-700">
+      <section id="map" className="h-[600px] w-full bg-neutral-100 relative grayscale hover:grayscale-0 transition-all duration-700">
         <iframe 
           title="Office Location"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3430.228492067576!2d76.74103837542387!3d30.711200174594613!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fec0000000001%3A0x6b00000000000000!2sSCO-96%2C%20Sector%2040C%2C%20Chandigarh!5e0!3m2!1sen!2sin!4v1710340000000!5m2!1sen!2sin" 

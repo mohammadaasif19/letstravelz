@@ -4,8 +4,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Image paths
-const HERO_IMAGE = "/luxury_travel_hero_1773394416882.png";
+// 3D Parallax Image paths
+const CLOUDS = "/home/clouds.jpg";
+const MOUNTAIN_MAIN = "/home/mountain-bg-main-2.jpg";
+const MOUNTAIN_LEFT = "/home/mountain-bg-left.png";
+const MOUNTAIN_RIGHT = "/home/mountain-bg-right.png";
 const BALI_IMAGE = "/bali_culture_1773394455093.png";
 
 const FeatureCard = ({ icon, title, description, index }) => (
@@ -137,10 +140,51 @@ const TourSection = () => {
 
 const Home = () => {
   const mainRef = useRef(null);
+  const heroRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(".gsap-hero-el", { y: 100, opacity: 0, duration: 2, stagger: 0.3, ease: "power4.out", delay: 0.5 });
+      if (heroRef.current) {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: 1,
+            pin: true,
+            anticipatePin: 1,
+          }
+        });
+  
+        // Background layers scale slowly
+        tl.to(".parallax-clouds", { scale: 1.1, ease: "none" }, 0);
+        tl.to(".parallax-mt-main", { scale: 1.05, ease: "none" }, 0);
+  
+        // Text center lands at ~30% from the top
+        tl.fromTo(".parallax-text",
+          { y: "60vh" },
+          { y: "-20vh", ease: "none" },
+          0
+        );
+  
+        // Mountains slide outward — left goes left, right goes right (minimal movement)
+        tl.to(".parallax-mt-left", { x: "-3%", ease: "none" }, 0);
+        tl.fromTo(".parallax-mt-right", 
+          { x: -150 }, 
+          { x: "3%", ease: "none" }, 
+          0
+        );
+      }
+  
+      // Entry animations (unchanged)
+      gsap.from(".gsap-hero-el", {
+        y: 100,
+        duration: 2,
+        stagger: 0.3,
+        ease: "power4.out",
+        delay: 0.5
+      });
+  
       gsap.utils.toArray(".gsap-reveal").forEach((el) => {
         gsap.from(el, {
           y: 60,
@@ -154,41 +198,59 @@ const Home = () => {
           }
         });
       });
+  
       [".gsap-card-stagger", ".gsap-feature-stagger", ".gsap-stat-card", ".gsap-bento-stagger"].forEach(selector => {
-        gsap.from(`${selector} > *`, { scrollTrigger: { trigger: selector, start: "top 85%" }, y: 50, opacity: 0, duration: 1, stagger: 0.15, ease: "power2.out", clearProps: "all" });
+        gsap.from(`${selector} > *`, {
+          scrollTrigger: { trigger: selector, start: "top 85%" },
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          stagger: 0.15,
+          ease: "power2.out",
+          clearProps: "all"
+        });
       });
+  
     }, mainRef);
+  
     return () => ctx.revert();
   }, []);
 
   return (
     <div ref={mainRef}>
-      <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section ref={heroRef} id="home" className="relative h-[120vh] flex items-center justify-center overflow-hidden bg-brand-dark">
+        {/* Layer 0: Clouds (Far Background) */}
         <div className="absolute inset-0 z-0">
-          <img src={HERO_IMAGE} alt="Hero" className="w-full h-full object-cover opacity-80 scale-105" />
-          <div className="absolute inset-0 bg-brand-dark/30" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white" />
+          <img src={CLOUDS} alt="Background Clouds" className="parallax-clouds w-full h-[140%] object-cover opacity-80" />
         </div>
-        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto space-y-8">
-          <div className="gsap-hero-el inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-brand-gold text-xs font-bold uppercase tracking-[0.2em] shadow-sm">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-gold opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-gold"></span>
-            </span>
-            Trusted by 500+ Travelers
-          </div>
-          <h1 className="gsap-hero-el text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] drop-shadow-2xl">
-            <span className="text-white">From Dreams to</span> <br />
-            <span className="gold-gradient">Destinations</span>
-          </h1>
-          <p className="gsap-hero-el text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed font-medium">
-            Experience seamless and memorable travel experiences across the globe. Specializing in visa assistance and customized tour packages.
-          </p>
-          <div className="gsap-hero-el flex flex-col sm:flex-row gap-4 justify-center pt-4">
-            <button className="bg-brand-dark text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-neutral-800 transition-all shadow-xl shadow-brand-dark/10">Explore Packages</button>
-            <button className="bg-white text-brand-dark px-10 py-4 rounded-full font-bold text-lg hover:bg-neutral-50 transition-all border border-neutral-200">Visa Assistance</button>
+
+        {/* Layer 1: Mountain Main (Mid Background) */}
+        <div className="absolute inset-0 z-10 pointer-events-none">
+          <img src={MOUNTAIN_MAIN} alt="Main Mountain" className="parallax-mt-main w-full h-[140%] object-cover" />
+        </div>
+
+        {/* Layer 2: Hero Text content (Middle Layer - Look 3D) */}
+        <div className="parallax-text absolute inset-0 z-20 flex flex-col items-center justify-center px-6 text-center pointer-events-none">
+          <div className="max-w-4xl space-y-8 mt-[-10vh] pointer-events-auto relative">
+            <h1 className="gsap-hero-el text-6xl md:text-9xl font-black tracking-tighter leading-[0.85] drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+              <span className="text-white">From Dreams to</span> <br />
+              <span className="gold-gradient">Destinations</span>
+            </h1>
           </div>
         </div>
+
+        {/* Layer 3: Mountain Background Left (Foreground) */}
+        <div className="absolute inset-y-0 left-[-15%] z-30 flex items-end w-[80%] pointer-events-none">
+          <img src={MOUNTAIN_LEFT} alt="Front Mountain Left" className="parallax-mt-left w-full h-[130%] object-contain object-bottom pointer-events-none" />
+        </div>
+        
+        {/* Layer 4: Mountain Background Right (Foreground) */}
+        <div className="absolute inset-y-0 right-[-15%] z-40 flex items-end w-[80%] pointer-events-none">
+          <img src={MOUNTAIN_RIGHT} alt="Front Mountain Right" className="parallax-mt-right w-full h-[130%] object-contain object-bottom pointer-events-none" />
+        </div>
+
+        {/* Bottom Overlay to blend into next section */}
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-white to-transparent z-[45]" />
       </section>
 
       <section className="py-32 container mx-auto px-6">

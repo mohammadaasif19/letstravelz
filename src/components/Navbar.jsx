@@ -35,8 +35,6 @@ const getPath = (item, base) => {
 };
 
 const NavItem = ({ link, isScrolled, isHome }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const timeoutRef = React.useRef(null);
   const location = useLocation();
   
   const isPathActive = (path) => {
@@ -48,39 +46,20 @@ const NavItem = ({ link, isScrolled, isHome }) => {
   const isCategoryActive = link.subItems && link.subItems.some(item => location.pathname === getPath(item, link.path));
   const isActive = isPathActive(link.path) || isCategoryActive;
 
-  const handleMouseEnter = () => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    // Add a 100ms delay to verify intent
-    timeoutRef.current = setTimeout(() => {
-      setIsOpen(true);
-    }, 100);
-  };
-
-  const handleMouseLeave = () => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    timeoutRef.current = setTimeout(() => {
-      setIsOpen(false);
-    }, 200); // Wait a bit before closing to allow moving to the menu
-  };
-
   const textColor = isActive 
     ? 'text-brand-gold' 
     : (isScrolled || !isHome ? 'text-brand-dark/80' : 'text-white/90');
 
   return (
-    <div 
-      className="relative flex items-center h-full"
-      onMouseLeave={handleMouseLeave}
-    >
+    <div className="relative group flex items-center h-full">
       <HashLink 
         smooth 
         to={link.path} 
-        onMouseEnter={handleMouseEnter}
-        className={`${textColor} hover:text-brand-gold transition-all duration-300 flex items-center gap-1.5 py-2 relative group font-black whitespace-nowrap`}
+        className={`${textColor} hover:text-brand-gold transition-all duration-300 flex items-center gap-1.5 py-4 relative font-black whitespace-nowrap`}
       >
         {link.name}
         {link.subItems && (
-          <svg className={`w-2.5 h-2.5 transition-transform duration-500 ${isOpen ? 'rotate-180 text-brand-gold' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-2.5 h-2.5 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M19 9l-7 7-7-7" />
           </svg>
         )}
@@ -90,10 +69,7 @@ const NavItem = ({ link, isScrolled, isHome }) => {
       </HashLink>
 
       {link.subItems && (
-        <div 
-          onMouseEnter={handleMouseEnter} // Keep open when mouse enters dropdown
-          className={`absolute top-[80%] -left-4 w-72 pt-6 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] ${isOpen ? 'opacity-100 translate-y-0 visible' : 'opacity-0 -translate-y-4 invisible'}`}
-        >
+        <div className="absolute top-full -left-4 w-72 pt-2 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200 ease-out pointer-events-none group-hover:pointer-events-auto">
           <div className="bg-white/95 backdrop-blur-2xl border border-neutral-100 shadow-[0_20px_50px_rgba(0,0,0,0.1)] rounded-[2rem] p-5 overflow-hidden">
             <div className="grid gap-1">
               <p className="text-[9px] font-black text-neutral-400 uppercase tracking-widest mb-2 px-4 italic border-b border-neutral-50 pb-2">Select Destination</p>
@@ -182,8 +158,8 @@ const Navbar = () => {
           </button>
 
         <Link to="/" className="flex items-center group">
-          <div className="relative overflow-hidden">
-            <img src="/logo-main.png" alt="Let's Travelz" className={`transition-all duration-500 object-contain ${isScrolled ? 'h-11 lg:h-12' : 'h-14 lg:h-20'}`} />
+          <div className="relative">
+            <img src="/logo-main.png" alt="Let's Travelz" className={`transition-all duration-500 object-contain ${isScrolled || !isHome ? 'h-14 lg:h-18' : 'h-20 lg:h-32'}`} />
           </div>
         </Link>
         </div>

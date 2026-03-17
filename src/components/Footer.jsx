@@ -9,9 +9,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
           {/* Brand column */}
           <div className="space-y-8">
-            <div className="flex items-center">
+            <Link to="/" className="flex items-center">
               <img src="/logo-main.png" alt="Let's Travelz" className="h-24 w-auto object-contain" />
-            </div>
+            </Link>
             <p className="text-neutral-500 font-medium leading-relaxed">
               At Let’s Travelz, we believe travel is more than just reaching a destination—it’s about the journey.
             </p>
@@ -118,9 +118,21 @@ const Footer = () => {
           <p className="text-neutral-400 text-xs font-medium">
             Copyright © 2026 | Powered by Let’s Travelz | All Rights Reserved.
           </p>
-          <div className="flex gap-8 text-[10px] font-black uppercase tracking-widest text-neutral-400">
-            <a href="#" className="hover:text-brand-gold transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-brand-gold transition-colors">Terms of Service</a>
+          <div className="text-neutral-400 text-[10px] font-black uppercase tracking-widest flex items-center gap-2 order-1 md:order-2">
+            <span className="opacity-75">Designed & Maintained by</span>
+            <a 
+              href="https://foveainfotech.com/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="font-black text-brand-dark hover:text-brand-gold transition-colors flex items-center gap-2 group"
+            >
+              Fovea Infotech
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-external-link w-3 h-3 transform group-hover:-translate-y-0.5 transition-transform" aria-hidden="true">
+                <path d="M15 3h6v6"></path>
+                <path d="M10 14 21 3"></path>
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              </svg>
+            </a>
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-gold: #c5a028;
+  --color-brand-gold: #FFA701;
   --color-brand-cyan: #00acc1;
   --color-brand-dark: #1a1c23;
   --color-brand-surface: #f8f9fc;
@@ -39,7 +39,7 @@
 }
 
 .gold-gradient {
-  background: linear-gradient(135deg, #facc15 0%, #eab308 100%);
+  background: linear-gradient(135deg, #FFA701 0%, #E69600 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

@@ -218,7 +218,7 @@ const Home = () => {
 
   return (
     <div ref={mainRef}>
-      <section ref={heroRef} id="home" className="relative h-[120vh] flex items-center justify-center overflow-hidden bg-brand-dark">
+      <section ref={heroRef} id="home" className="relative h-[140vh] flex items-center justify-center overflow-hidden bg-brand-dark">
         {/* Layer 0: Clouds (Far Background) */}
         <div className="absolute inset-0 z-0">
           <img src={CLOUDS} alt="Background Clouds" className="parallax-clouds w-full h-[140%] object-cover opacity-80" />

@@ -6,7 +6,7 @@ const Malaysia = () => {
   const activities = [
     { title: "Cycling", image: "https://www.extravelmoney.com/blog/wp-content/uploads/2017/05/cycling-in-kuala-lumpur.jpg" },
     { title: "Wildlife Safari", image: "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=1000" },
-    { title: "Trekking", image: "https://media4.thrillophilia.com/images/photos/000/080/560/original/1627550018_shutterstock_1405028546.jpg?aio=w-753;h-450;crop&dpr=2" },
+    { title: "Trekking", image: "/Trekking.jpg" },
     { title: "Scuba diving", image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=1000" }
   ];
 
@@ -14,7 +14,7 @@ const Malaysia = () => {
     { name: "Malacca", image: "https://media.tacdn.com/media/attractions-splice-spp-674x446/10/ea/85/35.jpg", type: "Historic Town" },
     { name: "Petronas Twin Towers", image: "https://cdn.britannica.com/65/3465-050-AA5092D6/Petronas-Twin-Towers-Malaysia-Kuala-Lumpur-Associates.jpg", type: "City Icon" },
     { name: "Langkawi Island", image: "https://gommts3.mmtcdn.com/htl-imgs/htl-imgs/201603100722201228-c5cd7348_z.jpg", type: "Tropical Retreat" },
-    { name: "Penang", image: "https://media.cntraveller.com/photos/6989e6347f118c28b914212f/master/w_1600%2Cc_limit/Flavourhunter-Penang-CNTuk-March2026-Lauryn-Ishak-Global-DSC08700.jpg", type: "Culture & Food" },
+    { name: "Penang", image: "/penang.jpg", type: "Culture & Food" },
     { name: "Cameron Highlands", image: "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/06/74/8c/41.jpg", type: "Cool Highlands" }
   ];
 
@@ -53,10 +53,10 @@ const Malaysia = () => {
 
             <div className="gsap-reveal space-y-8 text-neutral-600 font-medium text-xl leading-relaxed">
               <p>
-                Malaysia, truly Asia, is a captivating land where modernity and tradition coexist in perfect harmony. From dazzling skyscrapers to sacred temples, from lush rainforests to pristine beaches — Malaysia welcomes every traveler with warmth and wonder. Its vibrant culture, tropical beauty, and rich heritage make it one of Asia’s most diverse and unforgettable destinations.
+                Malaysia, truly Asia, is a captivating land where modernity and tradition coexist in perfect harmony. From dazzling skyscrapers to sacred temples, from lush rainforests to pristine beaches - Malaysia welcomes every traveler with warmth and wonder. Its vibrant culture, tropical beauty, and rich heritage make it one of Asia’s most diverse and unforgettable destinations.
               </p>
               <p>
-                At Let’s Travelz, we take you beyond the ordinary — from exploring Kuala Lumpur’s iconic Petronas Towers to wandering through Penang’s colorful street art and relaxing on Langkawi’s sun-kissed shores. Whether you seek city adventures, cultural discoveries, or peaceful island escapes, Malaysia offers an experience tailored for every kind of traveler.
+                At Let’s Travelz, we take you beyond the ordinary - from exploring Kuala Lumpur’s iconic Petronas Towers to wandering through Penang’s colorful street art and relaxing on Langkawi’s sun-kissed shores. Whether you seek city adventures, cultural discoveries, or peaceful island escapes, Malaysia offers an experience tailored for every kind of traveler.
               </p>
               <div className="relative pt-12">
                 <div className="absolute top-0 left-0 w-12 h-1 bg-brand-gold rounded-full" />
@@ -106,36 +106,36 @@ const Malaysia = () => {
             </h3>
             <p className="text-neutral-400 font-bold uppercase tracking-[0.4em] text-xs">Explore the hottest travel spots around the globe.</p>
           </div>
-          <div className="gsap-reveal-stagger grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
-            <div className="md:col-span-8 flex flex-col gap-6">
-              <div className="gsap-reveal-item group relative h-[500px] rounded-[3rem] overflow-hidden shadow-2xl border-2 border-neutral-50">
-                <img src={places[0].image} alt={places[0].name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3s]" />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent" />
-                <div className="absolute bottom-10 left-10"><p className="text-brand-gold font-black uppercase tracking-widest text-[10px] mb-3">{places[0].type}</p><h4 className="text-white text-5xl font-black tracking-tighter">{places[0].name}</h4></div>
+                    <div className="gsap-reveal-stagger flex flex-col gap-6 w-full group/places">
+            {/* Row 1: Places 0 and 1 */}
+            <div className="flex flex-col md:flex-row gap-6 h-auto md:h-[500px] w-full">
+              <div className="flex-[2] hover:flex-[3] relative group overflow-hidden rounded-[3rem] shadow-xl block transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover/places:opacity-50 group-hover/places:saturate-[0.7] hover:!opacity-100 hover:!scale-[1.02] hover:!saturate-100 hover:shadow-[0_30px_60px_rgba(26,28,35,0.25)] hover:z-10">
+                <div className="gsap-reveal-item w-full h-full relative">
+                  <img src={places[0].image} alt={places[0].name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3s]" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent" />
+                  <div className="absolute bottom-10 left-10">{places[0].type && <p className="text-brand-gold font-black uppercase tracking-widest text-[10px] mb-3">{places[0].type}</p>}<h4 className="text-white text-5xl font-black tracking-tighter">{places[0].name}</h4></div>
+                </div>
+              </div>
+              <div className="flex-[1] hover:flex-[2] relative group overflow-hidden rounded-[3rem] shadow-xl block transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover/places:opacity-50 group-hover/places:saturate-[0.7] hover:!opacity-100 hover:!scale-[1.02] hover:!saturate-100 hover:shadow-[0_30px_60px_rgba(26,28,35,0.25)] hover:z-10">
+                <div className="gsap-reveal-item w-full h-full relative">
+                  <img src={places[1].image} alt={places[1].name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3s]" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent" />
+                  <div className="absolute bottom-8 left-8">{places[1].type && <p className="text-brand-gold font-black uppercase tracking-widest text-[10px] mb-2">{places[1].type}</p>}<h4 className="text-white text-3xl font-black tracking-tighter">{places[1].name}</h4></div>
+                </div>
               </div>
             </div>
-            <div className="md:col-span-4 flex flex-col gap-6">
-              <div className="gsap-reveal-item group relative h-[500px] rounded-[3rem] overflow-hidden shadow-2xl border-2 border-neutral-50">
-                <img src={places[1].image} alt={places[1].name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3s]" />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent" />
-                <div className="absolute bottom-8 left-8"><p className="text-brand-gold font-black uppercase tracking-widest text-[10px] mb-2">{places[1].type}</p><h4 className="text-white text-3xl font-black tracking-tighter">{places[1].name}</h4></div>
-              </div>
+            {/* Row 2: Places 2, 3 and 4 */}
+            <div className="flex flex-col md:flex-row gap-6 h-auto md:h-[350px] w-full">
+              {places.slice(2).map((place, i) => (
+                <div key={i} className="flex-[1] hover:flex-[1.5] relative group overflow-hidden rounded-[3rem] shadow-xl block transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover/places:opacity-50 group-hover/places:saturate-[0.7] hover:!opacity-100 hover:!scale-[1.02] hover:!saturate-100 hover:shadow-[0_30px_60px_rgba(26,28,35,0.25)] hover:z-10">
+                  <div className="gsap-reveal-item w-full h-full relative">
+                    <img src={place.image} alt={place.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3s]" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent" />
+                    <div className="absolute bottom-8 left-8">{place.type && <p className="text-brand-gold font-black uppercase tracking-widest text-[10px] mb-2">{place.type}</p>}<h4 className="text-white text-3xl font-black tracking-tighter">{place.name}</h4></div>
+                  </div>
+                </div>
+              ))}
             </div>
-            <div className="md:col-span-4"><div className="gsap-reveal-item group relative h-[350px] rounded-[3rem] overflow-hidden shadow-2xl">
-              <img src={places[2].image} alt={places[2].name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3s]" />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent" />
-              <div className="absolute bottom-8 left-8"><p className="text-brand-gold font-black uppercase tracking-widest text-[10px] mb-2">{places[2].type}</p><h4 className="text-white text-3xl font-black tracking-tighter">{places[2].name}</h4></div>
-            </div></div>
-            <div className="md:col-span-4"><div className="gsap-reveal-item group relative h-[350px] rounded-[3rem] overflow-hidden shadow-2xl">
-              <img src={places[3].image} alt={places[3].name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3s]" />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent" />
-              <div className="absolute bottom-8 left-8"><p className="text-brand-gold font-black uppercase tracking-widest text-[10px] mb-2">{places[3].type}</p><h4 className="text-white text-3xl font-black tracking-tighter">{places[3].name}</h4></div>
-            </div></div>
-            <div className="md:col-span-4"><div className="gsap-reveal-item group relative h-[350px] rounded-[3rem] overflow-hidden shadow-2xl">
-              <img src={places[4].image} alt={places[4].name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3s]" />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent" />
-              <div className="absolute bottom-8 left-8"><p className="text-brand-gold font-black uppercase tracking-widest text-[10px] mb-2">{places[4].type}</p><h4 className="text-white text-3xl font-black tracking-tighter">{places[4].name}</h4></div>
-            </div></div>
           </div>
         </div>
       </section>

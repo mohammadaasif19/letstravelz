@@ -30,7 +30,7 @@ const Thailand = () => {
     },
     {
       name: "Koh Samui",
-      image: "https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?auto=format&fit=crop&q=80&w=2000",
+      image: "/Koh%20Samui.jpg",
       type: "Luxury Escape"
     },
     {
@@ -93,7 +93,7 @@ const Thailand = () => {
                 Thailand, fondly known as the Land of Smiles, is where golden temples, tropical islands, and bustling cities create an irresistible charm. From the dazzling neon-lit streets of Bangkok to the serene, limestone-framed beaches of Krabi, every corner of this kingdom bursts with life, spirituality, and vibrant color.
               </p>
               <p>
-                At Let’s Travelz, we bring you the best of Thailand—from floating markets tucked in hidden canals to world-class traditional spas that redefine relaxation. We curate scenic island-hopping odysseys and culinary adventures heart-crafted to awaken every sense.
+                At Let’s Travelz, we bring you the best of Thailand-from floating markets tucked in hidden canals to world-class traditional spas that redefine relaxation. We curate scenic island-hopping odysseys and culinary adventures heart-crafted to awaken every sense.
               </p>
               <div className="relative pt-12">
                 <div className="absolute top-0 left-0 w-12 h-1 bg-brand-gold rounded-full" />
@@ -156,58 +156,35 @@ const Thailand = () => {
             <p className="text-neutral-400 font-bold uppercase tracking-[0.4em] text-xs">Explore the hottest travel spots around the globe.</p>
           </div>
 
-          <div className="gsap-reveal-stagger grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
-            <div className="md:col-span-8 flex flex-col gap-6">
-              <div className="gsap-reveal-item group relative h-[500px] rounded-[3rem] overflow-hidden shadow-2xl border-2 border-neutral-50">
-                <img src={places[0].image} alt={places[0].name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3s]" />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent" />
-                <div className="absolute bottom-10 left-10">
-                  <p className="text-brand-gold font-black uppercase tracking-widest text-[10px] mb-3">{places[0].type}</p>
-                  <h4 className="text-white text-5xl font-black tracking-tighter">{places[0].name}</h4>
+                    <div className="gsap-reveal-stagger flex flex-col gap-6 w-full group/places">
+            {/* Row 1: Places 0 and 1 */}
+            <div className="flex flex-col md:flex-row gap-6 h-auto md:h-[500px] w-full">
+              <div className="flex-[2] hover:flex-[3] relative group overflow-hidden rounded-[3rem] shadow-xl block transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover/places:opacity-50 group-hover/places:saturate-[0.7] hover:!opacity-100 hover:!scale-[1.02] hover:!saturate-100 hover:shadow-[0_30px_60px_rgba(26,28,35,0.25)] hover:z-10">
+                <div className="gsap-reveal-item w-full h-full relative">
+                  <img src={places[0].image} alt={places[0].name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3s]" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent" />
+                  <div className="absolute bottom-10 left-10">{places[0].type && <p className="text-brand-gold font-black uppercase tracking-widest text-[10px] mb-3">{places[0].type}</p>}<h4 className="text-white text-5xl font-black tracking-tighter">{places[0].name}</h4></div>
+                </div>
+              </div>
+              <div className="flex-[1] hover:flex-[2] relative group overflow-hidden rounded-[3rem] shadow-xl block transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover/places:opacity-50 group-hover/places:saturate-[0.7] hover:!opacity-100 hover:!scale-[1.02] hover:!saturate-100 hover:shadow-[0_30px_60px_rgba(26,28,35,0.25)] hover:z-10">
+                <div className="gsap-reveal-item w-full h-full relative">
+                  <img src={places[1].image} alt={places[1].name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3s]" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent" />
+                  <div className="absolute bottom-8 left-8">{places[1].type && <p className="text-brand-gold font-black uppercase tracking-widest text-[10px] mb-2">{places[1].type}</p>}<h4 className="text-white text-3xl font-black tracking-tighter">{places[1].name}</h4></div>
                 </div>
               </div>
             </div>
-
-            <div className="md:col-span-4 flex flex-col gap-6">
-              <div className="gsap-reveal-item group relative h-[500px] rounded-[3rem] overflow-hidden shadow-2xl border-2 border-neutral-50">
-                <img src={places[1].image} alt={places[1].name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3s]" />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent" />
-                <div className="absolute bottom-8 left-8">
-                  <p className="text-brand-gold font-black uppercase tracking-widest text-[10px] mb-2">{places[1].type}</p>
-                  <h4 className="text-white text-3xl font-black tracking-tighter">{places[1].name}</h4>
+            {/* Row 2: Places 2, 3 and 4 */}
+            <div className="flex flex-col md:flex-row gap-6 h-auto md:h-[350px] w-full">
+              {places.slice(2).map((place, i) => (
+                <div key={i} className="flex-[1] hover:flex-[1.5] relative group overflow-hidden rounded-[3rem] shadow-xl block transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover/places:opacity-50 group-hover/places:saturate-[0.7] hover:!opacity-100 hover:!scale-[1.02] hover:!saturate-100 hover:shadow-[0_30px_60px_rgba(26,28,35,0.25)] hover:z-10">
+                  <div className="gsap-reveal-item w-full h-full relative">
+                    <img src={place.image} alt={place.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3s]" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent" />
+                    <div className="absolute bottom-8 left-8">{place.type && <p className="text-brand-gold font-black uppercase tracking-widest text-[10px] mb-2">{place.type}</p>}<h4 className="text-white text-3xl font-black tracking-tighter">{place.name}</h4></div>
+                  </div>
                 </div>
-              </div>
-            </div>
-
-            <div className="md:col-span-4">
-              <div className="gsap-reveal-item group relative h-[350px] rounded-[3rem] overflow-hidden shadow-2xl">
-                <img src={places[2].image} alt={places[2].name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3s]" />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent" />
-                <div className="absolute bottom-8 left-8">
-                  <p className="text-brand-gold font-black uppercase tracking-widest text-[10px] mb-2">{places[2].type}</p>
-                  <h4 className="text-white text-3xl font-black tracking-tighter">{places[2].name}</h4>
-                </div>
-              </div>
-            </div>
-            <div className="md:col-span-4">
-              <div className="gsap-reveal-item group relative h-[350px] rounded-[3rem] overflow-hidden shadow-2xl">
-                <img src={places[3].image} alt={places[3].name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3s]" />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent" />
-                <div className="absolute bottom-8 left-8">
-                  <p className="text-brand-gold font-black uppercase tracking-widest text-[10px] mb-2">{places[3].type}</p>
-                  <h4 className="text-white text-3xl font-black tracking-tighter">{places[3].name}</h4>
-                </div>
-              </div>
-            </div>
-            <div className="md:col-span-4">
-              <div className="gsap-reveal-item group relative h-[350px] rounded-[3rem] overflow-hidden shadow-2xl">
-                <img src={places[4].image} alt={places[4].name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3s]" />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent" />
-                <div className="absolute bottom-8 left-8">
-                  <p className="text-brand-gold font-black uppercase tracking-widest text-[10px] mb-2">{places[4].type}</p>
-                  <h4 className="text-white text-3xl font-black tracking-tighter">{places[4].name}</h4>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>

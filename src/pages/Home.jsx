@@ -1,12 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
 // 3D Parallax Image paths
-const CLOUDS = "/home/clouds.jpg";
+const CLOUD_1 = "/home/cloud-1.png";
+const CLOUD_2 = "/home/cloud-6.png";
+const CLOUD_4 = "/home/cloud-5.png";
+const CLOUD_5 = "/home/cloud-5.png";
+const CLOUD_6 = "/home/cloud-6.png";
 const MOUNTAIN_MAIN = "/home/mountain-bg-main-2.jpg";
+const MOUNTAIN_MAIN_MOBILE = "/home/mountain-bg-main-2-mobile.png";
 const MOUNTAIN_LEFT = "/home/mountain-bg-left.png";
 const MOUNTAIN_RIGHT = "/home/mountain-bg-right.png";
 const BALI_IMAGE = "/bali_culture_1773394455093.png";
@@ -24,17 +30,13 @@ const FeatureCard = ({ icon, title, description, index }) => (
         </span>
       </div>
       <h3 className="text-2xl font-black mb-4 text-brand-dark tracking-tight">{title}</h3>
-      <p className="text-neutral-500 text-sm leading-relaxed font-medium mb-6">{description}</p>
-      <div className="flex items-center gap-2 text-brand-gold text-[10px] font-black uppercase tracking-widest opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">
-        Learn More
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-      </div>
+      <p className="text-neutral-500 text-sm leading-relaxed font-medium mb-2">{description}</p>
     </div>
   </div>
 );
 
-const DestinationCard = ({ image, title, price, tag }) => (
-  <div className="relative group overflow-hidden rounded-3xl aspect-[4/5] cursor-pointer shadow-lg">
+const DestinationCard = ({ image, title, tag, to }) => (
+  <Link to={to} className="relative group overflow-hidden rounded-3xl aspect-[4/5] cursor-pointer shadow-lg block">
     <img src={image} alt={title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
     <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
     <div className="absolute top-4 left-4">
@@ -42,14 +44,66 @@ const DestinationCard = ({ image, title, price, tag }) => (
     </div>
     <div className="absolute bottom-6 left-6 right-6">
       <h4 className="text-2xl font-bold mb-1 text-white">{title}</h4>
-      <p className="text-neutral-200 text-sm">Packages from <span className="text-brand-gold font-bold">{price}</span></p>
     </div>
-  </div>
+  </Link>
 );
 
 const TourSection = () => {
   const scrollRef = useRef(null);
   const [isPaused, setIsPaused] = useState(false);
+
+  const trips = [
+    {
+      title: "Dubai Luxury",
+      image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=800",
+      tag: "International Tour",
+      to: "/international/dubai"
+    },
+    {
+      title: "Exotic Kerala",
+      image: "/kerala_backwaters_1773395005447.png",
+      tag: "National Tour",
+      to: "/domestic/kerala"
+    },
+    {
+      title: "Exotic Thailand",
+      image: "/thailand_about.png",
+      tag: "International Tour",
+      to: "/international/thailand"
+    },
+    {
+      title: "Royal Rajasthan",
+      image: "/rajasthan_fort_1773395021365.png",
+      tag: "National Tour",
+      to: "/domestic/rajasthan"
+    },
+    {
+      title: "Bali Dreams",
+      image: "/bali_hero.png",
+      tag: "International Tour",
+      to: "/international/bali"
+    },
+    {
+      title: "Sunny Goa",
+      image: "/goa_beach_sunset.png",
+      tag: "National Tour",
+      to: "/domestic/goa"
+    },
+    {
+      title: "Swiss Alps",
+      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&q=80&w=800",
+      tag: "International Tour",
+      to: "/international/switzerland"
+    },
+    {
+      title: "Scenic Ladakh",
+      image: "https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&q=80&w=800",
+      tag: "National Tour",
+      to: "/domestic/leh-ladakh"
+    }
+  ];
+
+  const displayTrips = [...trips, ...trips];
 
   const scroll = (direction) => {
     if (scrollRef.current) {
@@ -108,29 +162,22 @@ const TourSection = () => {
       </div>
       <div onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)} className="gsap-reveal">
         <div ref={scrollRef} className="flex gap-8 overflow-x-auto no-scrollbar scroll-smooth px-6 md:px-[calc((100vw-1280px)/2)] pb-10">
-          {[1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6].map((num, i) => (
-            <div key={i} className="flex-shrink-0 w-[400px] h-[550px] relative group overflow-hidden rounded-[3rem] shadow-2xl">
+          {displayTrips.map((trip, i) => (
+            <Link to={trip.to} key={i} className="flex-shrink-0 w-[400px] h-[550px] relative group overflow-hidden rounded-[3rem] shadow-2xl block">
               <img
-                src={[
-                  "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=800",
-                  "/thailand_about.png",
-                  "/bali_hero.png",
-                  "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&q=80&w=800",
-                  "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&q=80&w=800",
-                  "/luxury_travel_hero_1773394416882.png"
-                ][i % 6]}
-                alt="Destination"
+                src={trip.image}
+                alt={trip.title}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-100 transition-opacity" />
               <div className="absolute bottom-10 left-10 right-10">
                 <h4 className="text-2xl font-black text-white mb-2 tracking-tight">
-                  {["Dubai Luxury", "Exotic Thailand", "Bali Dreams", "Swiss Alps", "Vietnam Wonders", "Global Getaways"][i % 6]}
+                  {trip.title}
                 </h4>
                 <div className="w-10 h-1 bg-brand-gold rounded-full transform origin-left transition-transform duration-500 scale-x-50 group-hover:scale-x-100" />
-                <p className="text-neutral-300 text-xs mt-4 uppercase tracking-[0.2em] font-bold">Curated Experience</p>
+                <p className="text-neutral-300 text-xs mt-4 uppercase tracking-[0.2em] font-bold">{trip.tag}</p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
@@ -141,6 +188,7 @@ const TourSection = () => {
 const Home = () => {
   const mainRef = useRef(null);
   const heroRef = useRef(null);
+  const location = useLocation();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -155,27 +203,55 @@ const Home = () => {
             anticipatePin: 1,
           }
         });
-  
-        // Background layers scale slowly
-        tl.to(".parallax-clouds", { scale: 1.1, ease: "none" }, 0);
-        tl.to(".parallax-mt-main", { scale: 1.05, ease: "none" }, 0);
-  
-        // Text center lands at ~30% from the top
+
+        // Background layers scale and drift
+        tl.to(".parallax-mt-main", { scale: 1.08, y: -30, ease: "none" }, 0);
+
+        // Clouds behave like mountains (Sync scroll)
+        tl.to(".cloud-deep-1, .cloud-sky-1", { x: "-5%", scale: 1.1, ease: "none" }, 0);
+        tl.to(".cloud-deep-2, .cloud-sky-2", { x: "5%", scale: 1.1, ease: "none" }, 0);
+        tl.to(".cloud-mid-1", { x: "-8%", scale: 1.15, ease: "none" }, 0);
+        tl.to(".cloud-mid-2", { x: "8%", scale: 1.15, ease: "none" }, 0);
+        tl.to(".cloud-fg-1", { x: "-10%", scale: 1.2, ease: "none" }, 0);
+
+        // Persistent Text movement
         tl.fromTo(".parallax-text",
-          { y: "60vh" },
-          { y: "-20vh", ease: "none" },
+          { y: "50vh" },
+          { y: "-25vh", ease: "none" },
           0
         );
-  
-        // Mountains slide outward — left goes left, right goes right (minimal movement)
-        tl.to(".parallax-mt-left", { x: "-3%", ease: "none" }, 0);
-        tl.fromTo(".parallax-mt-right", 
-          { x: -150 }, 
-          { x: "3%", ease: "none" }, 
+
+        // Mountains slide outward - left goes left, right goes right (minimal movement)
+        tl.to(".parallax-mt-left", { x: "-8%", scale: 1.1, ease: "none" }, 0);
+        tl.fromTo(".parallax-mt-right",
+          { x: -150 },
+          { x: "8%", scale: 1.1, ease: "none" },
           0
         );
       }
-  
+
+      // Continuous Wave-like Cloud Flow (Horizontal)
+      gsap.utils.toArray(".cloud-wrapper").forEach((wrapper, i) => {
+        const cloudImg = wrapper.querySelector('img');
+        // Horizontal Wave flow
+        gsap.to(cloudImg, {
+          x: i % 2 === 0 ? 150 : -150,
+          duration: 20 + i * 5,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut"
+        });
+
+        // Vertical Wave float
+        gsap.to(cloudImg, {
+          y: 20,
+          duration: 4 + i,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut"
+        });
+      });
+
       // Entry animations (unchanged)
       gsap.from(".gsap-hero-el", {
         y: 100,
@@ -184,7 +260,7 @@ const Home = () => {
         ease: "power4.out",
         delay: 0.5
       });
-  
+
       gsap.utils.toArray(".gsap-reveal").forEach((el) => {
         gsap.from(el, {
           y: 60,
@@ -198,8 +274,8 @@ const Home = () => {
           }
         });
       });
-  
-      [".gsap-card-stagger", ".gsap-feature-stagger", ".gsap-stat-card", ".gsap-bento-stagger"].forEach(selector => {
+
+      [".gsap-card-stagger", ".gsap-stat-card", ".gsap-bento-stagger"].forEach(selector => {
         gsap.from(`${selector} > *`, {
           scrollTrigger: { trigger: selector, start: "top 85%" },
           y: 50,
@@ -210,28 +286,71 @@ const Home = () => {
           clearProps: "all"
         });
       });
-  
+
+      gsap.from(".gsap-feature-stagger > *", {
+        scrollTrigger: { trigger: ".gsap-feature-stagger", start: "top 95%" },
+        y: 30,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.08,
+        ease: "power2.out",
+        clearProps: "all"
+      });
+
     }, mainRef);
-  
+
+    // The pinned hero adds scroll-distance (via ScrollTrigger's pin spacer) only once this
+    // effect runs, so an inbound hash link (e.g. footer "Nearby Visits") that scrolled before
+    // that spacer existed lands short. Refresh layout, then re-scroll to the real position.
+    if (location.hash) {
+      ScrollTrigger.refresh();
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          const el = document.querySelector(location.hash);
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+    }
+
     return () => ctx.revert();
   }, []);
 
   return (
     <div ref={mainRef}>
-      <section ref={heroRef} id="home" className="relative h-[140vh] flex items-center justify-center overflow-hidden bg-brand-dark">
-        {/* Layer 0: Clouds (Far Background) */}
-        <div className="absolute inset-0 z-0">
-          <img src={CLOUDS} alt="Background Clouds" className="parallax-clouds w-full h-[140%] object-cover opacity-80" />
+      <section ref={heroRef} id="home" className="relative h-[150vh] flex items-center justify-center overflow-hidden bg-brand-dark">
+        {/* Layer 0.5: Deep Clouds & Sky Clouds (Upper Sky) */}
+        {/* <div className="cloud-wrapper cloud-sky-1 absolute top-[-5%] left-[10%] w-[50%] z-[10]">
+          <img src={CLOUD_6} className="w-full opacity-100 blur-[1px] rotate-12" alt="" />
+        </div> */}
+        <div className="cloud-wrapper cloud-sky-2 absolute top-[-15%] right-[5%] w-[60%] z-[5]">
+          <img src={CLOUD_4} className="w-full opacity-40" alt="" />
+        </div>
+        {/* <div className="cloud-wrapper cloud-deep-1 absolute top-[10%] left-[5%] w-[40%] z-[10]">
+          <img src={CLOUD_6} className="w-full opacity-100 blur-[2px]" alt="" />
+        </div> */}
+        <div className="cloud-wrapper cloud-deep-2 absolute top-[20%] right-[-5%] w-[50%] z-[5]">
+          <img src={CLOUD_4} className="w-full opacity-30 blur-[4px]" alt="" />
         </div>
 
         {/* Layer 1: Mountain Main (Mid Background) */}
-        <div className="absolute inset-0 z-10 pointer-events-none">
-          <img src={MOUNTAIN_MAIN} alt="Main Mountain" className="parallax-mt-main w-full h-[140%] object-cover" />
+        <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
+          <picture>
+            <source media="(max-width: 767px)" srcSet={MOUNTAIN_MAIN_MOBILE} />
+            <img src={MOUNTAIN_MAIN} alt="Main Mountain" className="parallax-mt-main relative left-1/2 -translate-x-1/2 w-[220%] max-w-none h-full md:left-0 md:translate-x-0 md:w-full md:h-[140%] object-cover object-[center_88%] md:object-center" />
+          </picture>
         </div>
 
-        {/* Layer 2: Hero Text content (Middle Layer - Look 3D) */}
+        {/* Layer 1.5: Mid Clouds (In front of Main Mountain, behind text) */}
+        {/* <div className="cloud-wrapper cloud-mid-1 absolute bottom-[50%] left-[-10%] w-[60%] z-[15]">
+          <img src={CLOUD_4} className="w-full opacity-80" alt="" />
+        </div> */}
+        {/* <div className="cloud-wrapper cloud-mid-2 absolute bottom-[50%] right-[-10%] w-[60%] z-[100]">
+          <img src={CLOUD_2} className="w-full opacity-100 scale-[0.8]" alt="" />
+        </div> */}
+
+        {/* Layer 2: Hero Text content (Middle Layer) */}
         <div className="parallax-text absolute inset-0 z-20 flex flex-col items-center justify-center px-6 text-center pointer-events-none">
-          <div className="max-w-4xl space-y-8 mt-[-10vh] pointer-events-auto relative">
+          <div className="max-w-4xl space-y-4 mt-[-10vh] pointer-events-auto relative">
             <h1 className="gsap-hero-el text-6xl md:text-9xl font-black tracking-tighter leading-[0.85] drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
               <span className="text-white">From Dreams to</span> <br />
               <span className="gold-gradient">Destinations</span>
@@ -243,28 +362,33 @@ const Home = () => {
         <div className="absolute inset-y-0 left-[-15%] z-30 flex items-end w-[80%] pointer-events-none">
           <img src={MOUNTAIN_LEFT} alt="Front Mountain Left" className="parallax-mt-left w-full h-[130%] object-contain object-bottom pointer-events-none" />
         </div>
-        
+
         {/* Layer 4: Mountain Background Right (Foreground) */}
         <div className="absolute inset-y-0 right-[-15%] z-40 flex items-end w-[80%] pointer-events-none">
           <img src={MOUNTAIN_RIGHT} alt="Front Mountain Right" className="parallax-mt-right w-full h-[130%] object-contain object-bottom pointer-events-none" />
         </div>
 
+        {/* Layer 5: Foreground Large Clouds (Parting effect) */}
+        <div className="cloud-wrapper cloud-fg-1 absolute bottom-[-10%] left-[-20%] w-[70%] z-[42]">
+          <img src={CLOUD_5} className="w-full opacity-90 blur-sm mix-blend-lighten" alt="" />
+        </div>
+
         {/* Bottom Overlay to blend into next section */}
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-white to-transparent z-[45]" />
+        <div className="absolute inset-x-0 bottom-0 h-60 bg-gradient-to-t from-white via-white/80 to-transparent z-[45]" />
       </section>
 
       <section className="py-32 container mx-auto px-6">
-        <div className="gsap-reveal text-center mb-20 space-y-4">
+        <div className="gsap-reveal mb-20 space-y-4">
           <h2 className="text-brand-gold font-bold uppercase tracking-[0.3em] text-sm">Hottest Spots</h2>
           <h3 className="text-4xl md:text-6xl font-black tracking-tight text-brand-dark">Top Trending Destinations</h3>
-          <p className="text-neutral-500 max-w-xl mx-auto font-medium">Explore the hottest travel spots around the globe.</p>
+          <p className="text-neutral-500 max-w-xl font-medium">Explore the hottest travel spots around the globe.</p>
         </div>
         <div className="gsap-card-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-          <DestinationCard image={BALI_IMAGE} title="Bali" price="$899" tag="Tropical" />
-          <DestinationCard image="/thailand_hero.png" title="Thailand" price="$749" tag="Exotic" />
-          <DestinationCard image="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=800" title="Dubai" price="$999" tag="Modern" />
-          <DestinationCard image="/kerala_backwaters_1773395005447.png" title="Kerala" price="$499" tag="Serene" />
-          <DestinationCard image="/rajasthan_fort_1773395021365.png" title="Rajasthan" price="$549" tag="Heritage" />
+          <DestinationCard image={BALI_IMAGE} title="Bali" tag="Tropical" to="/international/bali" />
+          <DestinationCard image="/thailand_hero.png" title="Thailand" tag="Exotic" to="/international/thailand" />
+          <DestinationCard image="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=800" title="Dubai" tag="Modern" to="/international/dubai" />
+          <DestinationCard image="/kerala_backwaters_1773395005447.png" title="Kerala" tag="Serene" to="/domestic/kerala" />
+          <DestinationCard image="/rajasthan_fort_1773395021365.png" title="Rajasthan" tag="Heritage" to="/domestic/rajasthan" />
         </div>
       </section>
 
@@ -276,29 +400,36 @@ const Home = () => {
               <h3 className="text-4xl md:text-5xl font-black tracking-tight leading-tight text-brand-dark">Your Trusted Partner for Seamless Travel Experiences Worldwide</h3>
               <p className="text-neutral-500 font-medium">With Let’s Travelz, every route becomes a smooth, memorable, and truly enjoyable travel experience.</p>
             </div>
-            <a href="#contact" className="px-8 py-3 rounded-full border-2 border-brand-gold text-brand-gold font-bold hover:bg-brand-gold hover:text-white transition-all uppercase tracking-tighter text-sm">View All</a>
           </div>
           <div className="gsap-card-stagger grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="group relative overflow-hidden rounded-[2rem] bg-white border border-neutral-100 p-8 flex flex-col justify-end min-h-[400px] shadow-sm hover:shadow-xl transition-shadow">
               <img src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&q=80&w=1200" alt="Family Tour" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-              <div className="relative z-10 space-y-4"><h4 className="text-3xl font-black text-white">Family Tour</h4><p className="text-neutral-200 text-sm font-medium">Personalized family travel experiences designed for comfort and adventure.</p></div>
+              <div className="relative z-10 space-y-4">
+                <h4 className="text-3xl font-black text-white">Family Tours</h4>
+                <p className="text-brand-gold text-[10px] font-black uppercase tracking-[0.2em] -mt-1">International and Domestic</p>
+                <p className="text-neutral-200 text-sm font-medium">Personalized family travel experiences designed for comfort and adventure.</p>
+              </div>
             </div>
             <div className="group relative overflow-hidden rounded-[2rem] bg-white border border-neutral-100 p-8 flex flex-col justify-end min-h-[400px] shadow-sm hover:shadow-xl transition-shadow">
               <img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&q=80&w=1200" alt="Group Tour" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-              <div className="relative z-10 space-y-4"><h4 className="text-3xl font-black text-white">Group Tour</h4><p className="text-neutral-200 text-sm font-medium">Hassle-free international journeys for your entire group with expert documentation.</p></div>
+              <div className="relative z-10 space-y-4">
+                <h4 className="text-3xl font-black text-white">Group Tours</h4>
+                <p className="text-brand-gold text-[10px] font-black uppercase tracking-[0.2em] -mt-1">International and Domestic</p>
+                <p className="text-neutral-200 text-sm font-medium">Hassle-free international journeys for your entire group with expert documentation.</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="visa" className="py-32 container mx-auto px-6 bg-white relative overflow-hidden">
+      <section id="visa" className="py-32 max-w-[1440px] mx-auto px-6 bg-white relative overflow-hidden">
         <div className="absolute top-1/4 -left-20 w-80 h-80 bg-brand-gold/5 blur-[100px] rounded-full" />
         <div className="gsap-reveal relative z-10 flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
-          <div className="max-w-xl">
+          <div>
             <h2 className="text-brand-gold font-bold uppercase tracking-[0.4em] text-sm mb-4">Our Elite Offerings</h2>
-            <h3 className="text-5xl md:text-7xl font-black tracking-tighter leading-[0.9] text-brand-dark">Deals in Travel and <br />Visa Services</h3>
+            <h3 className="text-5xl md:text-7xl font-black tracking-tighter leading-[0.9] text-brand-dark">Experts in Customized <br />Tour & Group Packages</h3>
           </div>
           <div className="bg-brand-surface p-6 rounded-2xl border-l-4 border-brand-gold max-w-sm">
             <p className="text-neutral-600 text-sm font-bold leading-relaxed italic">"We redefine global travel by blending professional expertise with personalized care."</p>
@@ -309,7 +440,7 @@ const Home = () => {
             { title: "Air Tickets", desc: "Quick flight bookings worldwide.", icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg> },
             { title: "Land Transport", desc: "Luxury chauffeur-driven fleet.", icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1m1-4h1" /></svg> },
             { title: "Hotels", desc: "5-star stays at exclusive rates.", icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg> },
-            { title: "Visa Expert", desc: "Precision-led documentation.", icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg> }
+            { title: "Sightseeing & Activities", desc: "Memorable destination experiences.", icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" /></svg> }
           ].map((item, idx) => (
             <FeatureCard key={idx} icon={item.icon} title={item.title} description={item.desc} index={idx} />
           ))}
@@ -317,61 +448,77 @@ const Home = () => {
       </section>
 
       <section id="international" className="py-32 container mx-auto px-6">
-        <div className="gsap-reveal mb-20 text-center"><h3 className="text-4xl md:text-5xl font-black tracking-tight text-brand-dark">Top Tourist Destinations</h3></div>
-        <div className="gsap-bento-stagger grid grid-cols-1 md:grid-cols-4 md:grid-rows-3 gap-6 h-auto md:h-[1000px]">
-          {/* Main Featured: Dubai */}
-          <div className="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-[2.5rem] shadow-lg">
-            <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=1200" className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80" />
-            <div className="absolute bottom-10 left-10 z-10">
-              <h4 className="text-4xl font-black mb-2 text-white">Dubai</h4>
-              <p className="text-brand-gold font-bold uppercase tracking-widest text-xs">From $999</p>
+        <div className="gsap-reveal mb-20 space-y-4">
+          <h2 className="text-brand-gold font-bold uppercase tracking-[0.3em] text-sm">Worldwide Favorites</h2>
+          <h3 className="text-4xl md:text-5xl font-black tracking-tight text-brand-dark">Top Tourist Destinations</h3>
+        </div>
+        <div className="gsap-bento-stagger flex flex-col md:flex-row gap-6 h-auto md:h-[1000px] w-full group/bento">
+          
+          {/* Left Column: Dubai & Vietnam */}
+          <div className="flex-[2] flex flex-col gap-6 h-full transition-all duration-500">
+            {/* Dubai */}
+            <Link to="/international/dubai" className="flex-[2] hover:flex-[3] relative group overflow-hidden rounded-[2.5rem] shadow-lg block transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover/bento:opacity-50 group-hover/bento:saturate-[0.7] hover:!opacity-100 hover:!saturate-100 hover:shadow-[0_30px_60px_rgba(26,28,35,0.25)] hover:z-20">
+              <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=1200" className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80" />
+              <div className="absolute bottom-10 left-10 z-10">
+                <h4 className="text-4xl font-black mb-2 text-white">Dubai</h4>
+              </div>
+            </Link>
+
+            {/* Vietnam */}
+            <Link to="/international/vietnam" className="flex-[1] hover:flex-[1.5] relative group overflow-hidden rounded-[2.5rem] shadow-lg block transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover/bento:opacity-50 group-hover/bento:saturate-[0.7] hover:!opacity-100 hover:!saturate-100 hover:shadow-[0_30px_60px_rgba(26,28,35,0.25)] hover:z-20">
+              <img src="https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&q=80&w=1200" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s]" />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent p-10 flex flex-col justify-end">
+                <h4 className="text-3xl font-black text-white">Vietnam</h4>
+              </div>
+            </Link>
+          </div>
+
+          {/* Right Column: Thailand, Bali, Switzerland, Singapore, Maldives, Malaysia */}
+          <div className="flex-[2] flex flex-col gap-6 h-full transition-all duration-500">
+            
+            {/* Row 1: Thailand & Bali */}
+            <div className="flex-[1] hover:flex-[1.5] flex gap-6 w-full transition-all duration-500">
+              {/* Thailand */}
+              <Link to="/international/thailand" className="flex-[1] hover:flex-[2] relative group overflow-hidden rounded-[2.5rem] shadow-lg block transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover/bento:opacity-50 group-hover/bento:saturate-[0.7] hover:!opacity-100 hover:!saturate-100 hover:shadow-[0_30px_60px_rgba(26,28,35,0.25)] hover:z-20">
+                <img src="/thailand_about.png" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s]" />
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white font-black text-xl text-center px-4">Thailand</div>
+              </Link>
+              {/* Bali */}
+              <Link to="/international/bali" className="flex-[1] hover:flex-[2] relative group overflow-hidden rounded-[2.5rem] shadow-lg block transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover/bento:opacity-50 group-hover/bento:saturate-[0.7] hover:!opacity-100 hover:!saturate-100 hover:shadow-[0_30px_60px_rgba(26,28,35,0.25)] hover:z-20">
+                <img src="/bali_hero.png" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s]" />
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white font-black text-xl">Bali</div>
+              </Link>
             </div>
-          </div>
 
-          {/* Thailand */}
-          <div className="md:col-span-1 md:row-span-1 relative group overflow-hidden rounded-[2.5rem] shadow-lg">
-            <img src="/thailand_about.png" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s]" />
-            <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white font-black text-xl text-center px-4">Thailand</div>
-          </div>
-
-          {/* Bali */}
-          <div className="md:col-span-1 md:row-span-1 relative group overflow-hidden rounded-[2.5rem] shadow-lg">
-            <img src="/bali_hero.png" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s]" />
-            <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white font-black text-xl">Bali</div>
-          </div>
-
-          {/* Switzerland */}
-          <div className="md:col-span-1 md:row-span-1 relative group overflow-hidden rounded-[2.5rem] shadow-lg">
-            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&q=80&w=800" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s]" />
-            <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white font-black text-xl">Switzerland</div>
-          </div>
-
-          {/* Singapore */}
-          <div className="md:col-span-1 md:row-span-1 relative group overflow-hidden rounded-[2.5rem] shadow-lg">
-            <img src="/singapore_skyline.png" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s]" />
-            <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white font-black text-xl">Singapore</div>
-          </div>
-
-          {/* Vietnam - Wide Card */}
-          <div className="md:col-span-2 md:row-span-1 relative group overflow-hidden rounded-[2.5rem] shadow-lg">
-            <img src="https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&q=80&w=1200" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s]" />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent p-10 flex flex-col justify-end">
-              <h4 className="text-3xl font-black text-white">Vietnam</h4>
-              <p className="text-brand-gold font-bold">Nature's Wonder</p>
+            {/* Row 2: Switzerland & Singapore */}
+            <div className="flex-[1] hover:flex-[1.5] flex gap-6 w-full transition-all duration-500">
+              {/* Switzerland */}
+              <Link to="/international/switzerland" className="flex-[1] hover:flex-[2] relative group overflow-hidden rounded-[2.5rem] shadow-lg block transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover/bento:opacity-50 group-hover/bento:saturate-[0.7] hover:!opacity-100 hover:!saturate-100 hover:shadow-[0_30px_60px_rgba(26,28,35,0.25)] hover:z-20">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&q=80&w=800" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s]" />
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white font-black text-xl">Switzerland</div>
+              </Link>
+              {/* Singapore */}
+              <Link to="/international/singapore" className="flex-[1] hover:flex-[2] relative group overflow-hidden rounded-[2.5rem] shadow-lg block transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover/bento:opacity-50 group-hover/bento:saturate-[0.7] hover:!opacity-100 hover:!saturate-100 hover:shadow-[0_30px_60px_rgba(26,28,35,0.25)] hover:z-20">
+                <img src="/singapore_skyline.png" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s]" />
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white font-black text-xl">Singapore</div>
+              </Link>
             </div>
-          </div>
 
-          {/* Maldives */}
-          <div className="md:col-span-1 md:row-span-1 relative group overflow-hidden rounded-[2.5rem] shadow-lg">
-            <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&q=80&w=800" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s]" />
-            <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white font-black text-xl text-center px-4">Maldives</div>
-          </div>
+            {/* Row 3: Maldives & Malaysia */}
+            <div className="flex-[1] hover:flex-[1.5] flex gap-6 w-full transition-all duration-500">
+              {/* Maldives */}
+              <Link to="/international/maldives" className="flex-[1] hover:flex-[2] relative group overflow-hidden rounded-[2.5rem] shadow-lg block transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover/bento:opacity-50 group-hover/bento:saturate-[0.7] hover:!opacity-100 hover:!saturate-100 hover:shadow-[0_30px_60px_rgba(26,28,35,0.25)] hover:z-20">
+                <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&q=80&w=800" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s]" />
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white font-black text-xl text-center px-4">Maldives</div>
+              </Link>
+              {/* Malaysia */}
+              <Link to="/international/malaysia" className="flex-[1] hover:flex-[2] relative group overflow-hidden rounded-[2.5rem] shadow-lg block transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover/bento:opacity-50 group-hover/bento:saturate-[0.7] hover:!opacity-100 hover:!saturate-100 hover:shadow-[0_30px_60px_rgba(26,28,35,0.25)] hover:z-20">
+                <img src="/malaysia_destination.png" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s]" />
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white font-black text-xl text-center px-4">Malaysia</div>
+              </Link>
+            </div>
 
-          {/* Malaysia */}
-          <div className="md:col-span-1 md:row-span-1 relative group overflow-hidden rounded-[2.5rem] shadow-lg">
-            <img src="https://www.eyeonasia.gov.sg/images/asean-countries/Malaysia%20snapshot%20cover%20iso.jpg" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s]" />
-            <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white font-black text-xl text-center px-4">Malaysia</div>
           </div>
         </div>
       </section>

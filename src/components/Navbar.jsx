@@ -63,14 +63,13 @@ const NavItem = ({ link, isScrolled, isHome }) => {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M19 9l-7 7-7-7" />
           </svg>
         )}
-        <span className={`absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-brand-gold rounded-full transition-all duration-500 mt-1 ${isActive ? 'opacity-100' : 'opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-100'}`} />
+        <span className={`absolute bottom-[6px] left-0 w-full h-[3px] bg-brand-gold rounded-full transition-all duration-500 ${isActive ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100'} origin-center`} />
       </HashLink>
 
       {link.subItems && (
         <div className="absolute top-full -left-4 w-72 pt-2 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200 ease-out pointer-events-none group-hover:pointer-events-auto">
-          <div className="bg-white/95 backdrop-blur-2xl border border-neutral-100 shadow-[0_20px_50px_rgba(0,0,0,0.1)] rounded-[2rem] p-5 overflow-hidden">
+          <div className="bg-white border border-neutral-100 shadow-[0_20px_50px_rgba(0,0,0,0.1)] rounded-[2rem] p-5 overflow-hidden">
             <div className="grid gap-1">
-              <p className="text-[9px] font-black text-neutral-400 uppercase tracking-widest mb-2 px-4 italic border-b border-neutral-50 pb-2">Select Destination</p>
               {link.subItems.map((item) => {
                 const itemPath = getPath(item, link.path);
                 const isItemActive = location.pathname === itemPath;
@@ -242,7 +241,7 @@ const Navbar = () => {
       subItems: ['Bali', 'Thailand', 'Dubai', 'Malaysia', 'Vietnam', 'Cambodia', 'Maldives', 'Switzerland', 'Singapore', 'Sri Lanka']
     },
     {
-      name: 'Visa',
+      name: 'Checklist',
       path: '/#visa',
       subItems: ['New Zealand', 'United Kingdom', 'Australia', 'Germany', 'Canada']
     },
@@ -255,7 +254,7 @@ const Navbar = () => {
         <nav
           className={`pointer-events-auto transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] px-4 lg:px-8 flex items-center justify-between border shadow-2xl
             ${isScrolled || !isHome
-              ? 'w-full lg:w-[85%] bg-white/80 backdrop-blur-2xl py-1.5 rounded-[2rem] lg:rounded-full border-white/20 shadow-brand-dark/5'
+              ? 'w-full lg:w-[96%] xl:w-[92%] 2xl:w-[85%] bg-white/80 backdrop-blur-2xl py-1.5 rounded-[2rem] lg:rounded-full border-white/20 shadow-brand-dark/5'
               : 'w-full lg:w-[98%] bg-transparent py-1 border-transparent shadow-none'
             }`}
         >
@@ -273,14 +272,14 @@ const Navbar = () => {
 
             <Link to="/" className="flex items-center group">
               <img
-                src="/logo-main.png"
+                src="/lets-travelz-logo-new.png"
                 alt="Let's Travelz"
-                className={`transition-all duration-500 object-contain ${isScrolled || !isHome ? 'h-10 lg:h-12' : 'h-16 lg:h-24'}`}
+                className={`transition-all duration-500 object-contain ${isScrolled || !isHome ? 'h-9 lg:h-10 xl:h-11' : 'h-11 lg:h-12 xl:h-14'}`}
               />
             </Link>
           </div>
 
-          <div className="hidden lg:flex gap-10 text-[13px] font-black uppercase tracking-[0.15em] items-center">
+          <div className="hidden lg:flex gap-4 xl:gap-6 2xl:gap-8 text-[11px] xl:text-[12px] 2xl:text-[13px] font-black uppercase tracking-[0.12em] xl:tracking-[0.15em] items-center">
             {navLinks.map((link) => (
               <NavItem key={link.name} link={link} isScrolled={isScrolled} isHome={isHome} />
             ))}
@@ -290,13 +289,13 @@ const Navbar = () => {
             <Button
               asChild
               variant="brand"
-              className={`font-black text-[9px] lg:text-[10px] uppercase tracking-widest transition-all duration-500 shadow-xl border-none
+              className={`h-auto font-black text-[7px] sm:text-[8px] lg:text-[10px] uppercase tracking-widest transition-all duration-500 shadow-xl border-none
                 ${isScrolled || !isHome
                   ? 'bg-brand-dark hover:bg-brand-gold'
                   : 'bg-brand-gold ring-4 ring-white/10 hover:bg-brand-dark'
                 }`}
             >
-              <a href="mailto:info@letstravelz.com" className="px-5 lg:px-8 py-2.5 lg:py-4 rounded-full">
+              <a href="mailto:info@letstravelz.com" className="px-3 py-1.5 sm:px-4 sm:py-2 lg:px-6 lg:py-3 xl:px-8 rounded-full">
                 Get In Touch
               </a>
             </Button>
@@ -304,7 +303,7 @@ const Navbar = () => {
         </nav>
       </header>
 
-      {/* Mobile Menu — rendered outside nav so it fills the full screen */}
+      {/* Mobile Menu - rendered outside nav so it fills the full screen */}
       <MobileMenu
         isOpen={isMobileMenuOpen}
         navLinks={navLinks}

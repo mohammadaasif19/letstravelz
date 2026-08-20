@@ -12,7 +12,7 @@ const Maldives = () => {
 
   const places = [
     { name: "Islamic Centre", image: "https://tripjive.com/wp-content/uploads/2024/12/Maldives-Islamic-Centre-1024x585.jpg", type: "Cultural Landmark" },
-    { name: "Hulhumalé Island", image: "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&q=80&w=1000", type: "Modern Paradise" },
+    { name: "Hulhumalé Island", image: "/hulhumale%20island.jpg", type: "Modern Paradise" },
     { name: "Soneva Jani Resort", image: "https://media.cnn.com/api/v1/images/stellar/prod/171108220648-3-bedroom-water-reserve-at-soneva-jani-2-by-jack-brown.jpg?q=w_2000,h_1500,x_0,y_0,c_fill", type: "Luxury Escape" },
     { name: "Maaya Thila", image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=1000", type: "Marine Life" },
     { name: "Addu Atoll", image: "https://images.unsplash.com/photo-1516815231560-8f41ec531527?auto=format&fit=crop&q=80&w=1000", type: "Secluded Beauty" }
@@ -53,7 +53,7 @@ const Maldives = () => {
 
             <div className="gsap-reveal space-y-8 text-neutral-600 font-medium text-xl leading-relaxed">
               <p>
-                The Maldives is a paradise of turquoise lagoons, coral reefs, and overwater villas that redefine tropical luxury. Each island is a private sanctuary surrounded by the gentle rhythm of the ocean—serene, secluded, and spectacularly beautiful. With endless shades of blue, golden sunsets, and palm-fringed beaches, the Maldives is where nature and tranquility meet in perfect harmony.
+                The Maldives is a paradise of turquoise lagoons, coral reefs, and overwater villas that redefine tropical luxury. Each island is a private sanctuary surrounded by the gentle rhythm of the ocean-serene, secluded, and spectacularly beautiful. With endless shades of blue, golden sunsets, and palm-fringed beaches, the Maldives is where nature and tranquility meet in perfect harmony.
               </p>
               <p>
                 At Let’s Travelz, we craft personalized Maldives escapes designed around your dreams. Dive into crystal-clear waters teeming with marine life, indulge in soothing spa treatments by the sea, or relax on powdery white sands as the waves kiss your feet. From romantic candlelight dinners under the stars to thrilling water adventures, we ensure every detail of your journey is as magical as the destination itself.
@@ -100,36 +100,36 @@ const Maldives = () => {
             </h3>
             <p className="text-neutral-400 font-bold uppercase tracking-[0.4em] text-xs">Explore the hottest travel spots around the globe.</p>
           </div>
-          <div className="gsap-reveal-stagger grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
-            <div className="md:col-span-8 flex flex-col gap-6">
-              <div className="gsap-reveal-item group relative h-[500px] rounded-[3rem] overflow-hidden shadow-2xl border-2 border-neutral-50">
-                <img src={places[0].image} alt={places[0].name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3s]" />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent" />
-                <div className="absolute bottom-10 left-10"><p className="text-brand-gold font-black uppercase tracking-widest text-[10px] mb-3">{places[0].type}</p><h4 className="text-white text-5xl font-black tracking-tighter">{places[0].name}</h4></div>
+                    <div className="gsap-reveal-stagger flex flex-col gap-6 w-full group/places">
+            {/* Row 1: Places 0 and 1 */}
+            <div className="flex flex-col md:flex-row gap-6 h-auto md:h-[500px] w-full">
+              <div className="flex-[2] hover:flex-[3] relative group overflow-hidden rounded-[3rem] shadow-xl block transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover/places:opacity-50 group-hover/places:saturate-[0.7] hover:!opacity-100 hover:!scale-[1.02] hover:!saturate-100 hover:shadow-[0_30px_60px_rgba(26,28,35,0.25)] hover:z-10">
+                <div className="gsap-reveal-item w-full h-full relative">
+                  <img src={places[0].image} alt={places[0].name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3s]" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent" />
+                  <div className="absolute bottom-10 left-10">{places[0].type && <p className="text-brand-gold font-black uppercase tracking-widest text-[10px] mb-3">{places[0].type}</p>}<h4 className="text-white text-5xl font-black tracking-tighter">{places[0].name}</h4></div>
+                </div>
+              </div>
+              <div className="flex-[1] hover:flex-[2] relative group overflow-hidden rounded-[3rem] shadow-xl block transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover/places:opacity-50 group-hover/places:saturate-[0.7] hover:!opacity-100 hover:!scale-[1.02] hover:!saturate-100 hover:shadow-[0_30px_60px_rgba(26,28,35,0.25)] hover:z-10">
+                <div className="gsap-reveal-item w-full h-full relative">
+                  <img src={places[1].image} alt={places[1].name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3s]" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent" />
+                  <div className="absolute bottom-8 left-8">{places[1].type && <p className="text-brand-gold font-black uppercase tracking-widest text-[10px] mb-2">{places[1].type}</p>}<h4 className="text-white text-3xl font-black tracking-tighter">{places[1].name}</h4></div>
+                </div>
               </div>
             </div>
-            <div className="md:col-span-4 flex flex-col gap-6">
-              <div className="gsap-reveal-item group relative h-[500px] rounded-[3rem] overflow-hidden shadow-2xl border-2 border-neutral-50">
-                <img src={places[1].image} alt={places[1].name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3s]" />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent" />
-                <div className="absolute bottom-8 left-8"><p className="text-brand-gold font-black uppercase tracking-widest text-[10px] mb-2">{places[1].type}</p><h4 className="text-white text-3xl font-black tracking-tighter">{places[1].name}</h4></div>
-              </div>
+            {/* Row 2: Places 2, 3 and 4 */}
+            <div className="flex flex-col md:flex-row gap-6 h-auto md:h-[350px] w-full">
+              {places.slice(2).map((place, i) => (
+                <div key={i} className="flex-[1] hover:flex-[1.5] relative group overflow-hidden rounded-[3rem] shadow-xl block transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover/places:opacity-50 group-hover/places:saturate-[0.7] hover:!opacity-100 hover:!scale-[1.02] hover:!saturate-100 hover:shadow-[0_30px_60px_rgba(26,28,35,0.25)] hover:z-10">
+                  <div className="gsap-reveal-item w-full h-full relative">
+                    <img src={place.image} alt={place.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3s]" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent" />
+                    <div className="absolute bottom-8 left-8">{place.type && <p className="text-brand-gold font-black uppercase tracking-widest text-[10px] mb-2">{place.type}</p>}<h4 className="text-white text-3xl font-black tracking-tighter">{place.name}</h4></div>
+                  </div>
+                </div>
+              ))}
             </div>
-            <div className="md:col-span-4"><div className="gsap-reveal-item group relative h-[350px] rounded-[3rem] overflow-hidden shadow-2xl">
-              <img src={places[2].image} alt={places[2].name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3s]" />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent" />
-              <div className="absolute bottom-8 left-8"><p className="text-brand-gold font-black uppercase tracking-widest text-[10px] mb-2">{places[2].type}</p><h4 className="text-white text-3xl font-black tracking-tighter">{places[2].name}</h4></div>
-            </div></div>
-            <div className="md:col-span-4"><div className="gsap-reveal-item group relative h-[350px] rounded-[3rem] overflow-hidden shadow-2xl">
-              <img src={places[3].image} alt={places[3].name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3s]" />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent" />
-              <div className="absolute bottom-8 left-8"><p className="text-brand-gold font-black uppercase tracking-widest text-[10px] mb-2">{places[3].type}</p><h4 className="text-white text-3xl font-black tracking-tighter">{places[3].name}</h4></div>
-            </div></div>
-            <div className="md:col-span-4"><div className="gsap-reveal-item group relative h-[350px] rounded-[3rem] overflow-hidden shadow-2xl">
-              <img src={places[4].image} alt={places[4].name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3s]" />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent" />
-              <div className="absolute bottom-8 left-8"><p className="text-brand-gold font-black uppercase tracking-widest text-[10px] mb-2">{places[4].type}</p><h4 className="text-white text-3xl font-black tracking-tighter">{places[4].name}</h4></div>
-            </div></div>
           </div>
         </div>
       </section>

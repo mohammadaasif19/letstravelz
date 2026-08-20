@@ -7,7 +7,7 @@ const Lakshadweep = () => {
     { title: "Snorkeling", image: "https://seawatersports.com/images/activies/slide/snorkeling-in-lakshadweep-price.jpg" },
     { title: "Kayaking", image: "https://seawatersports.com/images/activies/slide/kayaking-in-lakshadweep-price.jpg" },
     { title: "Scuba Diving", image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=1000" },
-    { title: "Glass Bottom Boat", image: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&q=80&w=1000" }
+    { title: "Glass Bottom Boat", image: "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&q=80&w=1000" }
   ];
 
   const places = [
@@ -33,7 +33,7 @@ const Lakshadweep = () => {
           <div className="lg:w-1/2 gsap-reveal relative">
             <div className="absolute -top-10 -left-10 w-40 h-40 bg-brand-gold/5 rounded-full blur-3xl" />
             <div className="relative rounded-[3rem] overflow-hidden shadow-[0_50px_100px_rgba(0,0,0,0.1)] h-[600px] border-[12px] border-white group">
-              <img src="https://www.setmytrip.in/wp-content/uploads/2024/12/PSX_20241206_233414-scaled.jpg" alt="Lakshadweep" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]" />
+              <img src="https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?auto=format&fit=crop&q=80&w=2000" alt="Lakshadweep" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
               <div className="absolute bottom-10 left-10">
                 <p className="font-black text-xs uppercase tracking-widest mb-2 text-white/90">Lagoon Life</p>
@@ -56,7 +56,7 @@ const Lakshadweep = () => {
                 At Let’s Travelz, we go beyond the ordinary to help you explore Lakshadweep’s pristine beauty in comfort and style. Whether you’re seeking a romantic getaway, an adventurous dive beneath turquoise waters, or a peaceful retreat surrounded by coconut palms, our expertly designed packages ensure every moment feels magical and personal.
               </p>
               <p>
-                From the mesmerizing lagoons of Kadmat to the serene sunsets of Minicoy, every island tells a story waiting to be lived. We ensure your journey through Lakshadweep is seamless—from travel assistance to guided tours—so you can simply unwind and let the ocean waves set the rhythm of your soul.
+                From the mesmerizing lagoons of Kadmat to the serene sunsets of Minicoy, every island tells a story waiting to be lived. We ensure your journey through Lakshadweep is seamless-from travel assistance to guided tours-so you can simply unwind and let the ocean waves set the rhythm of your soul.
               </p>
             </div>
 
@@ -100,30 +100,36 @@ const Lakshadweep = () => {
             </h3>
             <p className="text-neutral-400 font-bold uppercase tracking-[0.4em] text-xs">Explore the hottest travel spots around the globe.</p>
           </div>
-          <div className="gsap-reveal-stagger grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
-            <div className="md:col-span-8 flex flex-col gap-6">
-              <div className="gsap-reveal-item group relative h-[500px] rounded-[3rem] overflow-hidden shadow-2xl border-2 border-neutral-50">
-                <img src={places[0].image} alt={places[0].name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3s]" />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent" />
-                <div className="absolute bottom-10 left-10"><p className="text-brand-gold font-black uppercase tracking-widest text-[10px] mb-3">{places[0].type}</p><h4 className="text-white text-5xl font-black tracking-tighter">{places[0].name}</h4></div>
-              </div>
-            </div>
-            <div className="md:col-span-4 flex flex-col gap-6">
-              <div className="gsap-reveal-item group relative h-[500px] rounded-[3rem] overflow-hidden shadow-2xl border-2 border-neutral-50">
-                <img src={places[1].image} alt={places[1].name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3s]" />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent" />
-                <div className="absolute bottom-8 left-8"><p className="text-brand-gold font-black uppercase tracking-widest text-[10px] mb-2">{places[1].type}</p><h4 className="text-white text-3xl font-black tracking-tighter">{places[1].name}</h4></div>
-              </div>
-            </div>
-            {places.slice(2).map((place, i) => (
-              <div key={i} className="md:col-span-4">
-                <div className="gsap-reveal-item group relative h-[350px] rounded-[3rem] overflow-hidden shadow-2xl">
-                  <img src={place.image} alt={place.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3s]" />
+          <div className="gsap-reveal-stagger flex flex-col gap-6 w-full group/places">
+            {/* Row 1: Places 0 and 1 */}
+            <div className="flex flex-col md:flex-row gap-6 h-auto md:h-[500px] w-full">
+              <div className="flex-[2] hover:flex-[3] relative group overflow-hidden rounded-[3rem] shadow-xl block transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover/places:opacity-50 group-hover/places:saturate-[0.7] hover:!opacity-100 hover:!scale-[1.02] hover:!saturate-100 hover:shadow-[0_30px_60px_rgba(26,28,35,0.25)] hover:z-10">
+                <div className="gsap-reveal-item w-full h-full relative">
+                  <img src={places[0].image} alt={places[0].name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3s]" />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent" />
-                  <div className="absolute bottom-8 left-8"><p className="text-brand-gold font-black uppercase tracking-widest text-[10px] mb-2">{place.type}</p><h4 className="text-white text-3xl font-black tracking-tighter">{place.name}</h4></div>
+                  <div className="absolute bottom-10 left-10"><p className="text-brand-gold font-black uppercase tracking-widest text-[10px] mb-3">{places[0].type}</p><h4 className="text-white text-5xl font-black tracking-tighter">{places[0].name}</h4></div>
                 </div>
               </div>
-            ))}
+              <div className="flex-[1] hover:flex-[2] relative group overflow-hidden rounded-[3rem] shadow-xl block transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover/places:opacity-50 group-hover/places:saturate-[0.7] hover:!opacity-100 hover:!scale-[1.02] hover:!saturate-100 hover:shadow-[0_30px_60px_rgba(26,28,35,0.25)] hover:z-10">
+                <div className="gsap-reveal-item w-full h-full relative">
+                  <img src={places[1].image} alt={places[1].name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3s]" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent" />
+                  <div className="absolute bottom-8 left-8"><p className="text-brand-gold font-black uppercase tracking-widest text-[10px] mb-2">{places[1].type}</p><h4 className="text-white text-3xl font-black tracking-tighter">{places[1].name}</h4></div>
+                </div>
+              </div>
+            </div>
+            {/* Row 2: Places 2, 3 and 4 */}
+            <div className="flex flex-col md:flex-row gap-6 h-auto md:h-[350px] w-full">
+              {places.slice(2).map((place, i) => (
+                <div key={i} className="flex-[1] hover:flex-[1.5] relative group overflow-hidden rounded-[3rem] shadow-xl block transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover/places:opacity-50 group-hover/places:saturate-[0.7] hover:!opacity-100 hover:!scale-[1.02] hover:!saturate-100 hover:shadow-[0_30px_60px_rgba(26,28,35,0.25)] hover:z-10">
+                  <div className="gsap-reveal-item w-full h-full relative">
+                    <img src={place.image} alt={place.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3s]" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent" />
+                    <div className="absolute bottom-8 left-8"><p className="text-brand-gold font-black uppercase tracking-widest text-[10px] mb-2">{place.type}</p><h4 className="text-white text-3xl font-black tracking-tighter">{place.name}</h4></div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
